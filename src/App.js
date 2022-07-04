@@ -7,15 +7,15 @@ import Hiking from "./components/Hiking";
 import "./App.css";
 
 const App = () => {
-  const { vault } = useContext(VaultContext);
+  const { state } = useContext(VaultContext);
 
   useEffect(() => {
-    console.log("The Vault()", vault);
+    console.log("The Vault()", state);
   });
 
   return (
     <>
-      <h2>{vault.welcome.entry.message}</h2>
+      <h2>{state.welcome.entry.message}</h2>
       <Auth />
       <Hiking />
     </>

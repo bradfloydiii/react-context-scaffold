@@ -9,7 +9,7 @@ export default (state, action) => {
     case "GET_USERS_FAILED":
       return {
         ...state,
-        error: action.payload,
+        error: { users: action.payload },
       };
     case "GET_HIKERS_SUCCESS":
       return {
@@ -19,7 +19,7 @@ export default (state, action) => {
     case "GET_HIKERS_FAILED":
       return {
         ...state,
-        error: action.payload,
+        error: { hikers: action.payload },
       };
     case "TRANSACTION_ERROR":
       return {

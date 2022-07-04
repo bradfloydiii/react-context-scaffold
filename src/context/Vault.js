@@ -21,7 +21,7 @@ export const VaultProvider = ({ children }) => {
   return (
     <VaultContext.Provider
       value={{
-        vault: state,
+        state,
         dispatch,
       }}
     >

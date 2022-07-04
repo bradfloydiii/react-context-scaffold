@@ -1,15 +1,14 @@
 // Hiking Service
 /* eslint-disable no-debugger */
 import axios from "axios";
+import * as Configs from "../index";
 
 let API = "";
-const HOST = "http://localhost";
-const PORT = "3001";
 
 export const getHikers = async (dispatch = null) => {
   API = "/hiking/json";
   const res = await axios
-    .get(`${HOST}:${PORT}${API}`)
+    .get(`${Configs.HOST}:${Configs.PORT}${API}`)
     .catch((error) => ({ error }));
 
   if (res.error) {

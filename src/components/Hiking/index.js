@@ -1,30 +1,43 @@
 /* eslint-disable no-debugger */
 import React, { useContext, useEffect } from "react";
 import { VaultContext } from "../../context/Vault";
-import * as Actions from "../../context/actions/hiking";
+import * as hikingService from "../../context/actions/hiking";
 
-import { Alert } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 
 const Hiking = () => {
-  const { vault, dispatch } = useContext(VaultContext);
-
+  const { state, dispatch } = useContext(VaultContext); // subscribes to global state
+  
+  // subscribes the component to changes in state.hikers
   useEffect(() => {
-    // REST call to /api/hiking/json
-    Actions.getHikers(dispatch);
-  }, []);
+    loading = false;
+  }, [state.hikers]);
 
+
+  // local vars and methods
+  let loading = false;
+
+  const getHikers = () => {
+    loading = true;
+    hikingService.getHikers(dispatch);
+  };
+
+  // render
   return (
     <>
-      {vault.error && (
+      {state.error && state.error.hikers && (
         <Alert severity="error">
-          {vault.error.name}: {vault.error.message}
+          {state.error.hikers.name}: {state.error.hikers.message}
         </Alert>
       )}
-      {!vault.hikers && <h3>loading hiking data...</h3>}
-      {vault.hikers && <h3>hiker names</h3>}
-      {vault.hikers &&
-        vault.hikers.hikers.map((hiker) => (
+
+      <Button onClick={() => getHikers()}>Get Hikers</Button>
+
+      {loading && <Alert severity="info">loading user data...</Alert>}
+      {state.hikers && <h3>hiker names</h3>}
+      {state.hikers &&
+        state.hikers.hikers.map((hiker) => (
           <div key={uuidv4()}>{hiker.name}</div>
         ))}
     </>
