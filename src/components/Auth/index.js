@@ -25,7 +25,9 @@ const Auth = () => {
 
       {state.user?.data && <h3>User Names</h3>}
       {state.user?.data &&
-        state.user.data.users.map((user) => <div key={uuidv4()}>{user.name}</div>)}
+        state.user.data.users.map((user) => (
+          <div key={uuidv4()}>User: {user.name}</div>
+        ))}
       {!state.user?.data && (
         <Button onClick={() => getUsers(event)} variant="contained">
           Get Users
