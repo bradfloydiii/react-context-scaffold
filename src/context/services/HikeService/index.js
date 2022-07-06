@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
 import axios from "axios";
-import * as ENV from "../index";
+import * as ENV from "../env";
 
 let API = "";
 
@@ -20,7 +20,7 @@ const getHikersFailed = (args) => {
   return payload;
 };
 
-const updateHikerSuccess = (args) => {
+const UPDATE_HIKER_SUCCESS = (args) => {
   const payload = {
     type: "updateHikers/failed",
     payload: args.error,
@@ -28,7 +28,7 @@ const updateHikerSuccess = (args) => {
   return payload;
 };
 
-const updateHikerFailed = (args) => {
+const UPDATE_HIKER_FAILED = (args) => {
   const payload = {
     type: "updateHikers/failed",
     payload: args.error,
@@ -60,11 +60,11 @@ export const updateHiker = async (dispatch) => {
     .catch((error) => ({ error }));
 
   if (res.error) {
-    dispatch(updateHikerFailed({ error: res.error }));
+    dispatch(UPDATE_HIKER_FAILED({ error: res.error }));
   }
 
   if (res.data) {
-    dispatch(updateHikerSuccess({ data: res.data }));
+    dispatch(UPDATE_HIKER_SUCCESS({ data: res.data }));
   }
 
 }

@@ -9,7 +9,9 @@ import { v4 as uuidv4 } from "uuid";
 const Hike = () => {
   const { state, dispatch, HikeService } = useContext(StoreContext);
 
-  // useEffect(() => {}, []);
+  useEffect(() => {
+    console.log("User", state.user?.users[0]);
+  }, [state.user]);
 
   const updateHiker = (e) => {
     e.preventDefault();
@@ -32,7 +34,17 @@ const Hike = () => {
           <div key={uuidv4()}>{hiker.name}</div>
         ))}
       {!state.hike?.data && (
-        <Button onClick={() => updateHiker(event)} variant="contained">Get Hikers</Button>
+        <Button onClick={() => updateHiker(event)} variant="contained">
+          Get Hikers
+        </Button>
+      )}
+
+      {state.user?.users && (
+        <ul>
+          {state.user.users.map((user) => (
+            <li key={user.id}>{user.name}</li>
+          ))}
+        </ul>
       )}
     </>
   );

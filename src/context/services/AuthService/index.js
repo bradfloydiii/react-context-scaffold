@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
 import axios from "axios";
-import * as ENV from "../index";
+import * as ENV from "../env";
 
 export let API = "";
 
@@ -9,7 +9,6 @@ const getUsersSuccess = (args) => {
     type: "getUsers/success",
     payload: args.users,
   };
-
   return payload;
 };
 
@@ -18,7 +17,6 @@ const getUsersFailed = (args) => {
     type: "getUsers/failed",
     payload: args.error,
   };
-
   return payload;
 };
 

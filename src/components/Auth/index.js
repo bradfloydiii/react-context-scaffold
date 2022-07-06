@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { StoreContext } from "../../context/Store";
 
 import { Alert, Button } from "@mui/material";
@@ -6,8 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const Auth = () => {
   const { state, dispatch, AuthService } = useContext(StoreContext);
-
-  // useEffect(() => {}, []);
 
   const getUsers = (e) => {
     e.preventDefault();
