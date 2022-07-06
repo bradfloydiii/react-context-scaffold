@@ -9,10 +9,6 @@ import { v4 as uuidv4 } from "uuid";
 const Hike = () => {
   const { state, dispatch, HikeService, AuthService } = useContext(StoreContext);
 
-  useEffect(() => {
-    console.log("User", state.user?.users[0]);
-  }, [state.user]);
-
   const updateHiker = (e) => {
     e.preventDefault();
     HikeService.getHikers(dispatch);
@@ -44,15 +40,15 @@ const Hike = () => {
         </Button>
       )}
       
-      {!state.user?.users && (
+      {!state.user?.data && (
         <Button onClick={() => getUsers(event)} variant="contained">
           Get Users
         </Button>
       )}
 
-      {state.user?.users && (
+      {state.user?.data && (
         <ul>
-          {state.user.users.map((user) => (
+          {state.user?.data.users.map((user) => (
             <li key={uuidv4()}>{user.name}</li>
           ))}
         </ul>

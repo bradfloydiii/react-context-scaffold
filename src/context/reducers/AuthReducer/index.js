@@ -4,7 +4,7 @@ export default (state, action) => {
     case "getUsers/success":
       return {
         ...state,
-        users: action.payload,
+        data: { users: action.payload },
       };
     case "getUsers/failed":
       return {

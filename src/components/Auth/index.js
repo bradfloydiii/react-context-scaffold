@@ -21,12 +21,12 @@ const Auth = () => {
         </Alert>
       )}
 
-      {!state.user && <Alert severity="info">loading user data...</Alert>}
+      {/* {!state.user && <Alert severity="info">loading user data...</Alert>}
 
-      {state.user?.users && <h3>User Names</h3>}
-      {state.user?.users &&
-        state.user.users.map((user) => <div key={uuidv4()}>{user.name}</div>)}
-      {!state.user?.users && (
+      {state.user?.data.users && <h3>User Names</h3>}
+      {state.user?.data &&
+        state.user.data.users.map((user) => <div key={uuidv4()}>{user.name}</div>)} */}
+      {!state.user?.data && (
         <Button onClick={() => getUsers(event)} variant="contained">
           Get Users
         </Button>
