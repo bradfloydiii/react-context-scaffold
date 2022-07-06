@@ -1,23 +1,22 @@
 import React, { useContext, useEffect } from "react";
-import { VaultContext } from "./context/Vault";
+import { StoreContext } from "./context/Store";
 
 import Auth from "./components/Auth";
-import Hiking from "./components/Hiking";
+import Hike from "./components/Hike";
 
 import "./App.css";
 
 const App = () => {
-  const { state } = useContext(VaultContext);
+  const { state } = useContext(StoreContext);
 
   useEffect(() => {
-    console.log("The Vault()", state);
+    console.log("The Store()", state);
   });
 
   return (
     <>
-      <h2>{state.welcome.entry.message}</h2>
       <Auth />
-      <Hiking />
+      <Hike />
     </>
   );
 };

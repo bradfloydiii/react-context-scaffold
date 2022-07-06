@@ -1,35 +1,38 @@
 import React, { useContext, useEffect } from "react";
-import { VaultContext } from "../../context/Vault";
-import * as authService from "../../context/actions/auth";
+import { StoreContext } from "../../context/Store";
 
-import { Alert } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 
 const Auth = () => {
-  const { state, dispatch } = useContext(VaultContext);
+  const { state, dispatch, AuthService } = useContext(StoreContext);
 
-  useEffect(() => {
-    authService.getUsers(dispatch);
-  }, []);
+  // useEffect(() => {}, []);
 
-  useEffect(() => {
-    loading = false;
-  }, [state.users]);
+  const getUsers = (e) => {
+    e.preventDefault();
 
-  let loading = false;
+    AuthService.getUsers(dispatch);
+  };
 
   return (
     <>
-      {state.error && state.error.users && (
+      {state.user?.error && (
         <Alert severity="error">
-          {state.error.users.name}: {state.error.users.message}
+          getUsers(): {state.user.error.name}: {state.user.error.message}
         </Alert>
       )}
 
-      {loading && <Alert severity="info">loading user data...</Alert>}
-      {state.users && <h3>user names</h3>}
-      {state.users &&
-        state.users.map((user) => <div key={uuidv4()}>{user.name}</div>)}
+      {!state.user && <Alert severity="info">loading user data...</Alert>}
+
+      {state.user?.users && <h3>User Names</h3>}
+      {state.user?.users &&
+        state.user.users.map((user) => <div key={uuidv4()}>{user.name}</div>)}
+      {!state.user?.users && (
+        <Button onClick={() => getUsers(event)} variant="contained">
+          Get Users
+        </Button>
+      )}
     </>
   );
 };
