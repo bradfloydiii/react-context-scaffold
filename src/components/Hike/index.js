@@ -7,7 +7,7 @@ import { Alert, Button } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 
 const Hike = () => {
-  const { state, dispatch, HikeService } = useContext(StoreContext);
+  const { state, dispatch, HikeService, AuthService } = useContext(StoreContext);
 
   useEffect(() => {
     console.log("User", state.user?.users[0]);
@@ -17,6 +17,11 @@ const Hike = () => {
     e.preventDefault();
     HikeService.getHikers(dispatch);
   };
+
+  const getUsers = (e) => {
+    e.preventDefault();
+    AuthService.getUsers(dispatch);
+  }
 
   return (
     <>
@@ -38,11 +43,17 @@ const Hike = () => {
           Get Hikers
         </Button>
       )}
+      
+      {!state.user?.users && (
+        <Button onClick={() => getUsers(event)} variant="contained">
+          Get Users
+        </Button>
+      )}
 
       {state.user?.users && (
         <ul>
           {state.user.users.map((user) => (
-            <li key={user.id}>{user.name}</li>
+            <li key={uuidv4()}>{user.name}</li>
           ))}
         </ul>
       )}
