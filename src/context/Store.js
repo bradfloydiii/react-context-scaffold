@@ -2,11 +2,8 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useReducer } from "react";
 
-import AuthReducer from "./reducers/AuthReducer";
-import HikeReducer from "./reducers/HikeReducer";
-
-import * as AuthService from "./services/AuthService";
-import * as HikeService from "./services/HikeService";
+import UserReducer from "./reducers/UserReducer";
+import * as UserService from "./services/UserService";
 
 const combineReducers = (reducers) => {
   return (state = {}, action) => {
@@ -18,15 +15,14 @@ const combineReducers = (reducers) => {
   };
 };
 
-const Store = {}; // application state
+const Store = {}; // global model
 
 export const StoreContext = createContext(Store);
 
 export const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(
     combineReducers({
-      user: AuthReducer,
-      hike: HikeReducer,
+      user: UserReducer,
     }),
     Store
   );
@@ -36,8 +32,7 @@ export const StoreProvider = ({ children }) => {
       value={{
         state,
         dispatch,
-        AuthService,
-        HikeService,
+        UserService,
       }}
     >
       {children}

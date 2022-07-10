@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { StoreContext } from "./context/Store";
 
-import Auth from "./components/Auth";
-import Hike from "./components/Hike";
+import User from "./components/User";
 
 import "./App.css";
 
@@ -10,13 +9,12 @@ const App = () => {
   const { state } = useContext(StoreContext);
 
   useEffect(() => {
-    console.log("The Store()", state);
+    console.log("The Store():", state);
   });
 
   return (
     <>
-      <Auth />
-      <Hike />
+      <User />
     </>
   );
 };
