@@ -1,63 +1,73 @@
 // context: state.user.data.users
-
 /* eslint-disable no-debugger */
 import axios from "axios";
-import * as env from "../env";
+import { lingo } from "../env";
 
-const lingo = env.lingo.user;
-const server = env.lingo.server;
+let dispatcher;
 
-const addNewUser = (payload) => {
-  return {
-    type: lingo.actions.addUser,
-    payload,
-  };
-};
-
-const getUsers = (payload) => {
-  return {
-    type: lingo.actions.getUsers,
-    payload,
-  };
-};
-
-const getUsersSuccess = (payload) => {
-  return {
-    type: lingo.actions.getUsersSuccess,
-    payload,
-  };
-};
-
-const getUsersFail = (payload) => {
-  return {
-    type: lingo.actions.getUsersFail,
-    payload,
-  };
-};
-
-export const getAllUsers = async (dispatch) => {
-  dispatch(getUsers({ isLoading: true, data: null }));
-
+export const getUsers = async () => {
+  // REST call to get all the users (user/users)
   const res = await axios
-    .get(`${server.host}:${server.port}/${lingo.api.getAllUsers}`)
+    .get(`${lingo.server.host}:${lingo.server.port}/${lingo.user.api.getUsers}`)
     .catch((error) => ({ error }));
 
-  if (res.data?.users) {
-    dispatch(getUsersSuccess({ isLoading: false, data: res.data.users }));
-  }
+  // set the state to loading
+  dispatcher({
+    type: lingo.user.actions.getUsers,
+    payload: { isLoading: true },
+  });
 
-  if (res.error) {
-    dispatch(getUsersFail({ isLoading: false, error: res.error }));
-  }
+  // success <FFVII music plays...>
+  res.data?.users &&
+    dispatcher({
+      type: lingo.user.actions.getUsersSuccess,
+      payload: { isLoading: false, data: res.data.users },
+    });
+
+  // fail
+  res.error &&
+    dispatcher({
+      type: lingo.user.actions.getUsersFail,
+      payload: { isLoading: false, error: res.error },
+    });
 };
 
-export const addUser = async (user, dispatch) => {
-  dispatch(addNewUser({ isLoading: true }));
-
+export const createUser = async (payload) => {
+  // REST call to create a new user (user/create)
   const res = await axios
-    .post(`${server.host}:${server.port}/${lingo.api.addUser}`, user)
+    .post(
+      `${lingo.server.host}:${lingo.server.port}/${lingo.user.api.createUser}`,
+      payload
+    )
     .catch((error) => ({ error }));
 
-  if (res?.data) getAllUsers(dispatch);
-  if (res.error) dispatch(getUsersFail({ isLoading: false, error: res.error }));
+  // set the state to loading
+  dispatcher({
+    type: lingo.user.actions.createUser,
+    payload: { isLoading: true },
+  });
+
+  // success <FFVII music plays...>
+  if (res.data?.id) {
+    dispatcher({
+      type: lingo.user.actions.createUserSuccess,
+      payload: { isLoading: false },
+    });
+    getUsers();
+  }
+
+  // fail
+  res.error &&
+    dispatcher({
+      type: lingo.user.actions.createUserFail,
+      payload: { isLoading: false, error: res.error },
+    });
+};
+
+export const setDispatcher = (dispatch) => {
+  dispatcher = dispatch;
+};
+
+export const validateField = (field, patternKey) => {
+  return field.match(lingo.user.validation[patternKey].pattern);
 };

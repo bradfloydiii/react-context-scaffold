@@ -27,11 +27,12 @@ export const StoreProvider = ({ children }) => {
     Store
   );
 
+  UserService.setDispatcher(dispatch);
+
   return (
     <StoreContext.Provider
       value={{
         state,
-        dispatch,
         UserService,
       }}
     >
