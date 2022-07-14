@@ -1,41 +1,43 @@
 export const lingo = {
   server: {
-    host: "http://localhost",
-    port: "3001",
+    HOST: "http://localhost",
+    PORT: "3001",
   },
   user: {
     name: "User",
     serviceName: "UserService",
     api: {
-      getUsers: `user/users`,
       createUser: 'user/create',
+      GET_USERS: `user/users`,
     },
     actions: {
-      createUser: "CREATE_USER",
-      createUserSuccess: "CREATE_USER_SUCCESS",
-      createUserFail: "CREATE_USER_FAIL",
-      getUsers: "GET_USERS",
-      getUsersSuccess: "GET_USERS_SUCCESS",
-      getUsersFail: "GET_USERS_FAIL",
+      CREATE_USER: "CREATE_USER",
+      CREATE_USER_SUCCESS: "CREATE_USER_SUCCESS",
+      CREATE_USER_FAIL: "CREATE_USER_FAIL",
+      GET_USERS: "GET_USERS",
+      GET_USERS_SUCCESS: "GET_USERS_SUCCESS",
+      GET_USERS_FAIL: "GET_USERS_FAIL",
     },
     validation: {
       initialState: {
         name: {
+          id: "name",
           valid: false,
           message: "",
         },
         group: {
+          id: "group",
           valid: false,
           message: "",
         }
       },
       name: {
         pattern: /^[a-zA-Z]+$/,
-        error: "Incorrect name entry",
+        error: "Names must not contain numbers or special characters",
       },
       group: {
         pattern: /^[a-zA-Z]+$/,
-        error: "Incorrect group entry",
+        error: "Group names must not contain numbers or special characters",
       }
     },
     errorMessages: {

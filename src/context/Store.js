@@ -2,8 +2,8 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useReducer } from "react";
 
-import UserReducer from "./reducers/UserReducer";
-import * as UserService from "./services/UserService";
+import UserReducer from "../reducers/User";
+import * as UserService from "../services/User";
 
 const combineReducers = (reducers) => {
   return (state = {}, action) => {
@@ -18,7 +18,6 @@ const combineReducers = (reducers) => {
 const Store = {}; // global model
 
 export const StoreContext = createContext(Store);
-
 export const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(
     combineReducers({

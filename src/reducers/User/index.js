@@ -1,36 +1,36 @@
 /* eslint-disable no-case-declarations */
-import * as env from "../../services/env";
-
-const lingo = env.lingo;
+import { lingo } from "../../environment";
 
 export default (state, action) => {
+  const actions = lingo.user.actions;
+
   switch (action.type) {
-    case lingo.user.actions.createUser:
+    case actions.CREATE_USER:
       return {
         ...state,
         users: { isLoading: true },
       };
-    case lingo.user.actions.createUserSuccess:
+    case actions.createUserSuccess:
       return {
         ...state,
         users: { ...action.payload },
       };
-    case lingo.user.actions.createUserFail:
+    case actions.createUserFail:
       return {
         ...state,
         users: { ...action.payload },
       };
-    case lingo.user.actions.getUsers:
+    case actions.getUsers:
       return {
         ...state,
         users: { ...action.payload },
       };
-    case lingo.user.actions.getUsersSuccess:
+    case actions.getUsersSuccess:
       return {
         ...state,
         users: { ...action.payload },
       };
-    case lingo.user.actions.getUsersFail:
+    case actions.getUsersFail:
       return {
         ...state,
         users: { ...action.payload },

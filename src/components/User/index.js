@@ -2,16 +2,42 @@
 import React, { useContext, useState } from "react";
 import { StoreContext } from "../../context/Store";
 import { Alert, Button, TextField, Grid, Paper } from "@mui/material";
-import { lingo } from "../../context/services/env";
 import { Container } from "@mui/system";
 
 const User = () => {
   const { state, UserService } = useContext(StoreContext);
+
   const [name, setName] = useState("");
   const [group, setGroup] = useState("");
   const [validation, setValidation] = useState(
-    lingo.user.validation.initialState
+    UserService.initialUserValidationState
   );
+
+  const handleNameValidation = (name) => {
+    const { id } = name;
+    const { valid, message } = UserService.validateField(name);
+    setValidation({
+      group: { ...validation.group },
+      name: {
+        id,
+        valid,
+        message,
+      },
+    });
+  };
+
+  const handleGroupValidation = (group) => {
+    const { id } = group;
+    const { valid, message } = UserService.validateField(group);
+    setValidation({
+      name: { ...validation.name },
+      group: {
+        id,
+        valid,
+        message,
+      },
+    });
+  };
 
   return (
     <Container maxWidth="sm" sx={{ marginTop: "15px" }}>
@@ -21,15 +47,12 @@ const User = () => {
           {state.user.users.error.message}
         </Alert>
       )}
-
       {state.user?.users.isLoading && (
         <Alert severity="info">Retrieving user data...</Alert>
       )}
-
       {!state.user?.users && (
         <Button
           onClick={() => {
-            console.log(validation);
             UserService.getUsers();
           }}
           variant="contained"
@@ -37,7 +60,6 @@ const User = () => {
           Get Users
         </Button>
       )}
-
       {state.user?.users.data && (
         <>
           <Paper
@@ -57,22 +79,18 @@ const User = () => {
             <Grid item lg={6}>
               <div>
                 <TextField
+                  id="name"
+                  className={"outlined-error-helper-text"}
                   error={!validation.name.valid}
-                  id="outlined-error-helper-text"
                   label="Name"
                   value={name}
                   placeholder={"Name"}
                   helperText={validation.name.message}
                   onChange={(e) => {
                     setName(e.target.value);
-                    setValidation({
-                      group: { ...validation.group },
-                      name: {
-                        valid: UserService.validateField(name, "name") ?? false,
-                        message: !UserService.validateField(name, "name")
-                          ? lingo.user.validation.name.error
-                          : "",
-                      },
+                    handleNameValidation({
+                      id: e.target.id,
+                      value: e.target.value,
                     });
                   }}
                 />
@@ -82,23 +100,18 @@ const User = () => {
             <Grid item lg={6}>
               <div>
                 <TextField
+                  id="group"
+                  className={"outlined-error-helper-text"}
                   error={!validation.group.valid}
-                  id="outlined-error-helper-text"
                   label="Group"
                   value={group}
                   placeholder={"Group"}
                   helperText={validation.group.message}
                   onChange={(e) => {
                     setGroup(e.target.value);
-                    setValidation({
-                      name: { ...validation.name },
-                      group: {
-                        valid:
-                          UserService.validateField(group, "group") ?? false,
-                        message: !UserService.validateField(group, "group")
-                          ? lingo.user.validation.group.error
-                          : "",
-                      },
+                    handleGroupValidation({
+                      id: e.target.id,
+                      value: e.target.value,
                     });
                   }}
                 />
