@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useContext, useEffect, useState } from "react";
-import { StoreContext } from "../../context/Store";
+import { StoreContext } from "../../context/store";
 import { Alert, Button, TextField, Grid, Paper } from "@mui/material";
 import { Container } from "@mui/system";
 

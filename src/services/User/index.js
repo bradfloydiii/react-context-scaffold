@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import { lingo } from "../../environment";
-import * as Actions from "../../actions/User";
-import * as RestService from "../../services/Rest";
+import * as Actions from "../../actions/user";
+import * as RestService from "../rest";
 
 const API = lingo.user.api;
 

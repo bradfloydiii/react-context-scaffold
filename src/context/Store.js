@@ -2,8 +2,8 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useReducer } from "react";
 
-import UserReducer from "../reducers/User";
-import * as UserService from "../services/User";
+import UserReducer from "../reducers/user";
+import * as UserService from "../services/user";
 
 const combineReducers = (reducers) => {
   return (state = {}, action) => {
