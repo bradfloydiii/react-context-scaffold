@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/Store";
 import { Alert, Button, TextField, Grid, Paper } from "@mui/material";
 import { Container } from "@mui/system";
@@ -12,6 +12,10 @@ const User = () => {
   const [validation, setValidation] = useState(
     UserService.initialUserValidationState
   );
+
+  useEffect(() => {
+    console.log('user component init...')
+  }, []);
 
   const handleNameValidation = (name) => {
     const { id } = name;
@@ -47,7 +51,7 @@ const User = () => {
           {state.user.users.error.message}
         </Alert>
       )}
-      {state.user?.users.isLoading && (
+      {state.user?.users?.isLoading && (
         <Alert severity="info">Retrieving user data...</Alert>
       )}
       {!state.user?.users && (
@@ -60,7 +64,7 @@ const User = () => {
           Get Users
         </Button>
       )}
-      {state.user?.users.data && (
+      {state.user?.users?.data && (
         <>
           <Paper
             elevation={3}
@@ -73,7 +77,7 @@ const User = () => {
         </>
       )}
 
-      {state.user?.users.data && (
+      {state.user?.users?.data && (
         <>
           <Grid container spacing={2} sx={{ marginTop: "15px" }}>
             <Grid item lg={6}>

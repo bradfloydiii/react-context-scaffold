@@ -15,7 +15,7 @@ const combineReducers = (reducers) => {
   };
 };
 
-const Store = {}; // global model
+const Store = {};
 
 export const StoreContext = createContext(Store);
 export const StoreProvider = ({ children }) => {
