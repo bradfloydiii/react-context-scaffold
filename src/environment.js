@@ -1,25 +1,35 @@
-const Properties = {
-  Server: {
-    HOST: "http://localhost",
-    PORT: "3001",
+const properties = {
+  server: {
+    host: "http://localhost",
+    port: "3001",
   },
-  // User Module
-  User: {
+  user: {
     name: "User",
     serviceName: "UserService",
-    API: {
-      CREATE_USER: 'user/create',
-      GET_USERS: `user/users`,
+    api: {
+      createUser: "user/create",
+      getUsers: `user/users`,
     },
-    Actions: {
-      CREATE_USER: "CREATE_USER",
-      CREATE_USER_SUCCESS: "CREATE_USER_SUCCESS",
-      CREATE_USER_FAIL: "CREATE_USER_FAIL",
-      GET_USERS: "GET_USERS",
-      GET_USERS_SUCCESS: "GET_USERS_SUCCESS",
-      GET_USERS_FAIL: "GET_USERS_FAIL",
+    actions: {
+      createUser: "CREATE_USER",
+      createUserSuccess: "CREATE_USER_SUCCESS",
+      createUserFail: "CREATE_USER_FAIL",
+      getUsers: "GET_USERS",
+      getUsersSuccess: "GET_USERS_SUCCESS",
+      getUsersFail: "GET_USERS_FAIL",
     },
-    VALIDATION: {
+    loading: {
+      message: "Retrieving user data...",
+    },
+    buttons: {
+      addUsersButton: {
+        label: "Add User",
+      },
+      getUserButton: {
+        label: "Add User",
+      },
+    },
+    validation: {
       initialState: {
         name: {
           id: "name",
@@ -30,7 +40,7 @@ const Properties = {
           id: "group",
           valid: false,
           message: "",
-        }
+        },
       },
       name: {
         pattern: /^[a-zA-Z]+$/,
@@ -39,7 +49,7 @@ const Properties = {
       group: {
         pattern: /^[a-zA-Z]+$/,
         error: "Group names must not contain numbers or special characters",
-      }
+      },
     },
     errorMessages: {
       noDispatchMethodProvided: "No dispatch method prodived.",
@@ -54,4 +64,4 @@ const Properties = {
   },
 };
 
-export default Properties;
+export default properties;

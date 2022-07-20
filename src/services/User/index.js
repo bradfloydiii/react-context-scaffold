@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
-import Properties from "../../environment";
-import * as Actions from "../../actions/user";
-import * as RestService from "../rest";
+import properties from "../../environment";
+import * as actions from "../../actions/user";
+import * as restService from "../rest";
 
 let dispatcher;
 export const setDispatcher = (dispatch) => {
@@ -9,17 +9,27 @@ export const setDispatcher = (dispatch) => {
 };
 
 export const getUsers = async () => {
-  dispatcher(Actions.GET_USERS());
+  dispatcher(actions.getUsers());
 
-  const response = await RestService.call("GET", Properties.User.API.GET_USERS);
-  response.data?.users && dispatcher(Actions.GET_USERS_SUCCESS(response.data.users));
-  response.error && dispatcher(Actions.GET_USERS_FAIL(response.error));
+  const response = await restService.call("GET", properties.user.api.getUsers);
+  
+  if (response.data?.users)
+    dispatcher(actions.getUsersSuccess(response.data.users));
+
+  if (response.error)
+    dispatcher(actions.getUsersFail(response.error));
 };
 
 export const createUser = async (payload) => {
-  dispatcher(Actions.CREATE_USER());
+  dispatcher(actions.createUser());
 
-  const response = await RestService.call("POST", Properties.User.API.CREATE_USER, payload);
-  response.data?.id && dispatcher(Actions.CREATE_USER_SUCCESS()); getUsers();
-  response.error && dispatcher(Actions.CREATE_USER_FAIL(response.error));
+  const response = await restService.call("POST", properties.user.api.createUser, payload);
+
+  if (response.data?.id) {
+    dispatcher(actions.createUserSuccess());
+    getUsers();
+  }
+
+  if (response.error)
+    dispatcher(actions.createUserFail(response.error));
 };

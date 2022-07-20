@@ -1,16 +1,16 @@
 /* eslint-disable no-undef */
 import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/store";
-import Properties from "../../environment";
+import properties from "../../environment";
 
 import { Alert, Button, TextField, Grid, Paper } from "@mui/material";
 import { Container } from "@mui/system";
 
 import User from "./user";
-import "./users.css";
+import "./index.css";
 
 const validateField = (field) => {
-  const test = Properties.User.VALIDATION[field.id];
+  const test = properties.user.validation[field.id];
   return {
     valid: field.value.match(test.pattern) ?? false,
     message: !field.value.match(test.pattern) ? test.error : "",
@@ -82,7 +82,7 @@ const Users = () => {
 
       {/* state: loading users... */}
       {user?.users?.isLoading && (
-        <Alert severity="info">Retrieving user data...</Alert>
+        <Alert severity="info">{properties.user.loading.message}</Alert>
       )}
 
       {/* state: no users loaded */}
@@ -93,7 +93,7 @@ const Users = () => {
           }}
           variant="contained"
         >
-          Get Users
+          {properties.user.buttons.getUsersButton.label}
         </Button>
       )}
 
@@ -168,7 +168,7 @@ const Users = () => {
                   onClick={() => UserService.createUser({ name, group })}
                   variant="contained"
                 >
-                  Add User
+                  {properties.user.buttons.addUserButton.label}
                 </Button>
               </div>
             </Grid>
