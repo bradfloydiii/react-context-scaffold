@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { StoreContext } from "../../context/store";
 
-import User from "../user";
+import Users from "../users";
 
-import "./App.css";
+import "./app.css";
 
 const App = () => {
   const { state } = useContext(StoreContext);
@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <>
-      <User />
+      <Users />
     </>
   );
 };

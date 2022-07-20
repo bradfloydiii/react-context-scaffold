@@ -3,11 +3,12 @@ export const lingo = {
     HOST: "http://localhost",
     PORT: "3001",
   },
+  // User Module
   user: {
     name: "User",
     serviceName: "UserService",
     api: {
-      createUser: 'user/create',
+      CREATE_USER: 'user/create',
       GET_USERS: `user/users`,
     },
     actions: {

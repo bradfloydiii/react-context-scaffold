@@ -32,6 +32,7 @@ export const StoreProvider = ({ children }) => {
     <StoreContext.Provider
       value={{
         state,
+        user: state.user,
         UserService,
       }}
     >

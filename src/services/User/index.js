@@ -3,35 +3,23 @@ import { lingo } from "../../environment";
 import * as Actions from "../../actions/user";
 import * as RestService from "../rest";
 
-const API = lingo.user.api;
-
-export const initialUserValidationState = lingo.user.validation.initialState;
-
 let dispatcher;
 export const setDispatcher = (dispatch) => {
   dispatcher = dispatch;
 };
 
-export const validateField = (field) => {
-  const test = lingo.user.validation[field.id];
-  return {
-    valid: field.value.match(test.pattern) ?? false,
-    message: !field.value.match(test.pattern) ? test.error : "",
-  };
-};
-
 export const getUsers = async () => {
   dispatcher(Actions.GET_USERS());
 
-  const res = await RestService.get(API.GET_USERS);
-  res.data?.users && dispatcher(Actions.GET_USERS_SUCCESS(res.data.users));
-  res.error && dispatcher(Actions.GET_USERS_FAIL(res.error));
+  const response = await RestService.call("GET", lingo.user.api.GET_USERS);
+  response.data?.users && dispatcher(Actions.GET_USERS_SUCCESS(response.data.users));
+  response.error && dispatcher(Actions.GET_USERS_FAIL(response.error));
 };
 
 export const createUser = async (payload) => {
   dispatcher(Actions.CREATE_USER());
 
-  const res = await RestService.post(API.CREATE_USER, payload);
-  res.data?.id && dispatcher(Actions.CREATE_USER_SUCCESS()); getUsers();
-  res.error && dispatcher(Actions.CREATE_USER_FAIL(res.error));
+  const response = await RestService.call("POST", lingo.user.api.CREATE_USER, payload);
+  response.data?.id && dispatcher(Actions.CREATE_USER_SUCCESS()); getUsers();
+  response.error && dispatcher(Actions.CREATE_USER_FAIL(response.error));
 };
