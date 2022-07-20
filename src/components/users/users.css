@@ -1,4 +1,10 @@
-container {
-  margin-top: 1rem;
+.container {
+  margin-top: 2rem;
+}
+
+.paper {
+  padding: 2rem;
+  max-width: 400px;
+  margin: 10px 0 0 10px;
 }
 

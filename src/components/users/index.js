@@ -2,9 +2,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/store";
 import { lingo } from "../../environment";
+
 import { Alert, Button, TextField, Grid, Paper } from "@mui/material";
 import { Container } from "@mui/system";
 
+import User from "./user";
 import "./users.css";
 
 const validateField = (field) => {
@@ -69,8 +71,7 @@ const Users = () => {
   }, []);
 
   return (
-    <Container maxWidth="sm" sx={{ marginTop: "15px" }}>
-
+    <Container maxWidth="sm" className={"container"}>
       {/* state: error loading users */}
       {user?.users?.error && (
         <Alert severity="error">
@@ -98,12 +99,9 @@ const Users = () => {
       {/* state: users loaded */}
       {user?.users?.data && (
         <>
-          <Paper
-            elevation={3}
-            sx={{ padding: "2rem", maxWidth: "400px", margin: "10px 0 0 10px" }}
-          >
+          <Paper elevation={3} className={"paper"}>
             {user.users.data.map((user) => (
-              <div key={user.id}>{user.name}</div>
+              <User user={user} key={user.id} />
             ))}
           </Paper>
         </>
@@ -112,7 +110,7 @@ const Users = () => {
       {/* state: users loaded */}
       {user?.users?.data && (
         <>
-          <Grid container spacing={2} sx={{ marginTop: "15px" }}>
+          <Grid container spacing={2} className={"container"}>
             <Grid item lg={6}>
               <div>
                 <TextField
