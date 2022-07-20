@@ -1,17 +1,17 @@
-export const lingo = {
-  server: {
+const Properties = {
+  Server: {
     HOST: "http://localhost",
     PORT: "3001",
   },
   // User Module
-  user: {
+  User: {
     name: "User",
     serviceName: "UserService",
-    api: {
+    API: {
       CREATE_USER: 'user/create',
       GET_USERS: `user/users`,
     },
-    actions: {
+    Actions: {
       CREATE_USER: "CREATE_USER",
       CREATE_USER_SUCCESS: "CREATE_USER_SUCCESS",
       CREATE_USER_FAIL: "CREATE_USER_FAIL",
@@ -19,7 +19,7 @@ export const lingo = {
       GET_USERS_SUCCESS: "GET_USERS_SUCCESS",
       GET_USERS_FAIL: "GET_USERS_FAIL",
     },
-    validation: {
+    VALIDATION: {
       initialState: {
         name: {
           id: "name",
@@ -53,3 +53,5 @@ export const lingo = {
     },
   },
 };
+
+export default Properties;

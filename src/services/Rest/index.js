@@ -1,7 +1,7 @@
 import axios from "axios";
-import { lingo } from "../../environment";
+import Properties from "../../environment";
 
-const SERVER = lingo.server;
+const SERVER = Properties.Server;
 
 const post = (api, payload) => {
   return axios

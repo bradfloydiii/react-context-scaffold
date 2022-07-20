@@ -1,6 +1,6 @@
-import { lingo } from "../../environment";
+import Properties from "../../environment";
 
-const Actions = lingo.user.actions;
+const Actions = Properties.User.Actions;
 
 export const GET_USERS = () => {
   return {

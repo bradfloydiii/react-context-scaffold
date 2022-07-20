@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/store";
-import { lingo } from "../../environment";
+import Properties from "../../environment";
 
 import { Alert, Button, TextField, Grid, Paper } from "@mui/material";
 import { Container } from "@mui/system";
@@ -10,7 +10,7 @@ import User from "./user";
 import "./users.css";
 
 const validateField = (field) => {
-  const test = lingo.user.validation[field.id];
+  const test = Properties.User.VALIDATION[field.id];
   return {
     valid: field.value.match(test.pattern) ?? false,
     message: !field.value.match(test.pattern) ? test.error : "",
@@ -66,6 +66,7 @@ const Users = () => {
     },
   });
 
+  // lifecycle
   useEffect(() => {
     console.log("user component init...");
   }, []);

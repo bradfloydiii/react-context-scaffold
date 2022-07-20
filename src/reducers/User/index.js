@@ -1,7 +1,7 @@
 /* eslint-disable no-case-declarations */
-import { lingo } from "../../environment";
+import Properties from "../../environment";
 
-const Actions = lingo.user.actions;
+const Actions = Properties.User.Actions;
 
 export default (state, action) => {
 
