@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "James",
+      "group": 1
+    },
+    {
+      "id": 2,
+      "name": "Mark",
+      "group": 1
+    },
+    {
+      "id": 3,
+      "name": "Sam",
+      "group": 2
+    },
+    {
+      "id": 4,
+      "name": "Kyle",
+      "group": 3
+    },
+    {
+      "id": 5,
+      "name": "John",
+      "group": 4
+    }
+  ]
+}

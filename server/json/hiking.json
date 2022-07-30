@@ -1,0 +1,56 @@
+{
+  "hikers": [
+    {
+      "_id": 1,
+      "speed": 100,
+      "name": "Josh"
+    },
+    {
+      "_id": 2,
+      "speed": 50,
+      "name": "David"
+    },
+    {
+      "_id": 3,
+      "speed": 20,
+      "name": "Mike"
+    },
+    {
+      "_id": 4,
+      "speed": 10,
+      "name": "Peter"
+    },
+    {
+      "_id": 5,
+      "speed": 2.5,
+      "name": "Robert"
+    },
+    {
+      "_id": 6,
+      "speed": 25,
+      "name": "Paul"
+    },
+    {
+      "_id": 7,
+      "speed": 15,
+      "name": "Aaron"
+    }
+  ],
+  "bridges": [
+    {
+      "_id": 1,
+      "length": 100,
+      "numHikers": 4
+    },
+    {
+      "_id": 2,
+      "length": 250,
+      "numHikers": 5
+    },
+    {
+      "_id": 3,
+      "length": 150,
+      "numHikers": 7
+    }
+  ]
+}
