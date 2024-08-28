@@ -1,24 +1,24 @@
 import Properties from "../../environment";
 
-const Actions = Properties.User.Actions;
+const Actions = Properties.user.actions;
 
 export const GET_USERS = () => {
   return {
-    type: Actions.GET_USERS,
+    type: Actions.getUsers,
     payload: { isLoading: true },
   };
 };
 
 export const GET_USERS_SUCCESS = (data) => {
   return {
-    type: Actions.GET_USERS_SUCCESS,
+    type: Actions.getUsersSuccess,
     payload: { isLoading: false, data },
   };
 };
 
 export const GET_USERS_FAIL = (error) => {
   return {
-    type: Actions.GET_USERS_FAIL,
+    type: Actions.getUsersFail,
     payload: { isLoading: false, error: error },
   };
 };

@@ -1,30 +1,39 @@
 import axios from "axios";
 import Properties from "../../environment";
 
-const SERVER = Properties.Server;
+const SERVER = Properties.server;
 
 const post = (api, payload) => {
   return axios
-    .post(`${SERVER.HOST}:${SERVER.PORT}/${api}`, payload)
+    .post(`${SERVER.host}:${SERVER.port}/${api}`, payload)
     .catch((error) => ({ error }));
 };
 
-const get = (api) => {
-  return axios
-    .get(`${SERVER.HOST}:${SERVER.PORT}/${api}`)
-    .catch((error) => ({ error }));
+const get = async (api) => {
+  try {
+    return await axios
+      .get(`${SERVER.host}:${SERVER.port}/${api}`);
+  } catch (error) {
+    return ({ error });
+  }
 };
 
-const put = (api, payload) => {
-  return axios
-    .put(`${SERVER.HOST}:${SERVER.PORT}/${api}`, payload)
-    .catch((error) => ({ error }));
+const put = async (api, payload) => {
+  try {
+    return await axios
+      .put(`${SERVER.host}:${SERVER.port}/${api}`, payload);
+  } catch (error) {
+    return ({ error });
+  }
 };
 
-const remove = (api, payload) => {
-  return axios
-    .delete(`${SERVER.HOST}:${SERVER.PORT}/${api}`, payload)
-    .catch((error) => ({ error }));
+const remove = async (api, payload) => {
+  try {
+    return await axios
+      .delete(`${SERVER.host}:${SERVER.port}/${api}`, payload);
+  } catch (error) {
+    return ({ error });
+  }
 };
 
 const error = (protocol = "unknown") => {

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useContext, useEffect, useState } from "react";
-import { StoreContext } from "../../context/store";
+import { StoreContext } from "../../context/Store";
 import properties from "../../environment";
 
 import { Alert, Button, TextField, Grid, Paper } from "@mui/material";
@@ -93,7 +93,7 @@ const Users = () => {
           }}
           variant="contained"
         >
-          {properties.user.buttons.getUsersButton.label}
+          {properties?.user?.buttons?.getUserButton?.label}
         </Button>
       )}
 
@@ -168,7 +168,7 @@ const Users = () => {
                   onClick={() => UserService.createUser({ name, group })}
                   variant="contained"
                 >
-                  {properties.user.buttons.addUserButton.label}
+                  {properties.user.buttons.addUsersButton.label}
                 </Button>
               </div>
             </Grid>

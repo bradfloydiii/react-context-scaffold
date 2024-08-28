@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -9,7 +10,9 @@ const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(express.static('../client/dist/client'));
+console.info(path.join(__dirname, 'build'));
+// app.use(express.static('../client/dist/client'));
+app.use(express.static(path.join(__dirname, 'build')));
 app.use('/', router);
 
 require('./routes/routes')(router);

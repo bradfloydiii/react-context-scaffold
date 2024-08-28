@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { StoreContext } from "../../context/store";
+import { StoreContext } from "../../context/Store";
 
 import Users from "../users";
 

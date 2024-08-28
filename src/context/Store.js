@@ -2,8 +2,8 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useReducer } from "react";
 
-import UserReducer from "../reducers/user";
-import * as UserService from "../services/user";
+import UserReducer from "../reducers/User";
+import * as UserService from "../services/User";
 
 const combineReducers = (reducers) => {
   return (state = {}, action) => {
@@ -26,7 +26,8 @@ export const StoreProvider = ({ children }) => {
     Store
   );
 
-  UserService.setDispatcher(dispatch);
+  console.log("dispatch in StoreContext", dispatch);
+  UserService.setDispatcher(dispatch); // THIS IS NO LONGER WORKING
 
   return (
     <StoreContext.Provider

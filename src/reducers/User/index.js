@@ -1,37 +1,41 @@
 /* eslint-disable no-case-declarations */
 import Properties from "../../environment";
 
-const Actions = Properties.User.Actions;
+const Actions = Properties.user.actions;
 
 export default (state, action) => {
 
   switch (action.type) {
-    case Actions.CREATE_USER:
+     
+    case Actions.createUser:
       return {
         ...state,
         users: { isLoading: true },
       };
-    case Actions.CREATE_USER_SUCCESS:
+    case Actions.createUserSuccess:
+      console.log("action.type", action.type);
       return {
         ...state,
         users: { ...action.payload },
       };
-    case Actions.CREATE_USER_FAIL:
+    case Actions.createUserFail:
       return {
         ...state,
         users: { ...action.payload },
       };
-    case Actions.GET_USERS:
+    case Actions.getUsers:
+      console.log("action.type", action.type);
       return {
         ...state,
         users: { ...action.payload },
       };
-    case Actions.GET_USERS_SUCCESS:
+    case Actions.getUsersSuccess:
+      console.log("action.type", action.type); 
       return {
         ...state,
         users: { ...action.payload },
       };
-    case Actions.GET_USERS_FAIL:
+    case Actions.getUsersFail:
       return {
         ...state,
         users: { ...action.payload },
